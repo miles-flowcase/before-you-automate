@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before You Automate — Flowcase</title>
+  <meta name="description" content="Why AI-powered proposals still fall flat — and what the firms winning the most work are fixing first.">
+  <meta property="og:title" content="Before You Automate — Flowcase">
+  <meta property="og:description" content="Why AI-powered proposals still fall flat — and what the firms winning the most work are fixing first.">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="https://www.flowcase.com/favicon.ico">
+  <style>
+    :root {
+      --royal: #5B53FF;
+      --royal-light: #EAE9FF;
+      --dark: #0D0D18;
+      --green: #A6EF9E;
+      --green-dark: #2D5C29;
+      --green-mid: #D4F7D0;
+      --green-light: #F0FAF0;
+      --yellow: #F7F49D;
+      --yellow-light: #FDFCE8;
+      --light-blue: #BDE9F3;
+      --warm-white: #FAFAF8;
+      --warm-grey: #F3F1EE;
+      --mid-grey: #E8E5E0;
+      --text: #1A1A2E;
+      --text-mid: #4A4868;
+      --text-light: #7A7898;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --max: 780px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--warm-white);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top Bar ── */
+    .top-bar {
+      background: var(--dark);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-bar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--royal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+    .logo-wordmark {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .top-bar-cta {
+      background: var(--green);
+      color: var(--dark);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .top-bar-cta:hover { opacity: 0.85; }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      position: fixed;
+      top: 57px;
+      left: 0;
+      height: 3px;
+      background: var(--green);
+      width: 0%;
+      z-index: 99;
+      transition: width 0.1s linear;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--dark);
+      padding: 80px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 15% 50%, rgba(166,239,158,0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 85% 30%, rgba(91,83,255,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(166,239,158,0.12);
+      border: 1px solid rgba(166,239,158,0.3);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 36px;
+    }
+    .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -1px;
+      color: white;
+      margin-bottom: 32px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.2vw, 19px);
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hero-by {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+    }
+    .hero-by-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .hero-btn {
+      background: var(--green);
+      color: var(--dark);
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-block;
+    }
+    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(166,239,158,0.3); }
+    .hero-read {
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── Chapter Nav ── */
+    .chapter-nav {
+      background: white;
+      border-bottom: 1px solid var(--mid-grey);
+      padding: 0 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: sticky;
+      top: 57px;
+      z-index: 50;
+    }
+    .chapter-nav::-webkit-scrollbar { display: none; }
+    .chapter-nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+    }
+    .chapter-link {
+      padding: 16px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-light);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.2px;
+    }
+    .chapter-link:hover { color: var(--text); }
+    .chapter-link.active { color: var(--royal); border-bottom-color: var(--royal); }
+    .chapter-num {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--warm-grey);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-mid);
+      flex-shrink: 0;
+    }
+    .chapter-link.active .chapter-num { background: var(--royal); color: white; }
+
+    /* ── Sections ── */
+    .section {
+      padding: 80px 24px;
+    }
+    .section:nth-child(even) { background: white; }
+    .section:nth-child(odd) { background: var(--warm-white); }
+
+    .section-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--royal);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--royal);
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    h2 em { font-style: italic; color: var(--royal); }
+
+    h3 {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 400;
+      color: var(--text);
+      margin: 40px 0 16px;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    p strong { color: var(--text); font-weight: 600; }
+    p em { font-style: italic; color: var(--text); }
+
+    /* ── Pull Quote ── */
+    .pull-quote {
+      border-left: 4px solid var(--green);
+      padding: 24px 28px;
+      background: var(--green-light);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 36px 0;
+    }
+    .pull-quote p {
+      font-family: var(--serif);
+      font-size: clamp(20px, 3vw, 26px);
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* ── Stat Callout ── */
+    .stat-callout {
+      background: var(--dark);
+      border-radius: var(--radius);
+      padding: 36px;
+      margin: 32px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-callout::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 20% 50%, rgba(166,239,158,0.1) 0%, transparent 70%);
+    }
+    .stat-callout p {
+      position: relative;
+      font-family: var(--serif);
+      font-size: clamp(20px, 3vw, 28px);
+      font-style: italic;
+      color: white;
+      line-height: 1.35;
+      margin: 0;
+    }
+    .stat-callout p span { color: var(--green); font-style: normal; }
+
+    /* ── Cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) { .card-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: white;
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+    .section:nth-child(even) .card { background: var(--warm-grey); }
+
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--green-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+    .card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .card p { font-size: 14px; line-height: 1.6; margin: 0; }
+
+    /* ── Sources list ── */
+    .sources-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    .sources-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text-mid);
+    }
+    .src-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--royal);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    /* ── Fail Reasons ── */
+    .fail-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .fail-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: white;
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+    .section:nth-child(odd) .fail-card { background: white; }
+    .fail-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: #FEE8E8;
+      color: #C0392B;
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .fail-card h4 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .fail-card p { font-size: 14px; line-height: 1.65; margin: 0; }
+
+    /* ── Layer model ── */
+    .layers {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 32px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--mid-grey);
+    }
+    .layer {
+      padding: 32px;
+    }
+    .layer-1 {
+      background: var(--green-light);
+      border-top: 1px solid var(--mid-grey);
+    }
+    .layer-2 {
+      background: white;
+    }
+    .layer-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .layer-2 .layer-badge { background: var(--royal-light); color: var(--royal); }
+    .layer-1 .layer-badge { background: var(--green-mid); color: var(--green-dark); }
+    .layer h3 { margin: 0 0 16px; font-size: 20px; }
+    .layer-2 h3 { color: var(--royal); }
+    .layer-1 h3 { color: var(--green-dark); }
+    .layer-items { display: flex; flex-direction: column; gap: 8px; }
+    .layer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-mid);
+    }
+    .layer-item::before {
+      content: '→';
+      color: var(--text-light);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .layer-connector {
+      background: var(--mid-grey);
+      text-align: center;
+      padding: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* ── Case Study ── */
+    .case-study-card {
+      background: var(--dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 32px 0;
+    }
+    .case-study-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 32px 0;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .wsb-logo {
+      height: 36px;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+    .case-tag {
+      background: rgba(166,239,158,0.15);
+      border: 1px solid rgba(166,239,158,0.3);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .case-study-body {
+      padding: 24px 32px 32px;
+    }
+    .case-study-body p {
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+    }
+    .case-study-body p strong { color: white; }
+    .case-result {
+      background: rgba(166,239,158,0.1);
+      border: 1px solid rgba(166,239,158,0.25);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .case-result-num {
+      font-family: var(--serif);
+      font-size: 40px;
+      color: var(--green);
+      line-height: 1;
+      font-style: italic;
+    }
+    .case-result-text { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+    /* ── Testimonial ── */
+    .testimony {
+      background: white;
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 32px 0;
+      position: relative;
+    }
+    .testimony::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-family: var(--serif);
+      font-size: 80px;
+      line-height: 1;
+      color: var(--green-mid);
+    }
+    .testimony blockquote {
+      font-family: var(--serif);
+      font-size: clamp(17px, 2.5vw, 21px);
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.55;
+      padding-top: 24px;
+      margin-bottom: 24px;
+    }
+    .testimony-attr {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimony-avatar-wrap {
+      position: relative;
+    }
+    .testimony-photo {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--mid-grey);
+    }
+    .testimony-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green-mid);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .testimony-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .testimony-title { font-size: 13px; color: var(--text-light); }
+
+    /* ── Principles ── */
+    .principles {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 28px 0;
+    }
+    .principle {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: white;
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-sm);
+    }
+    .section:nth-child(even) .principle { background: var(--warm-grey); }
+    .principle-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .principle p { margin: 0; font-size: 15px; line-height: 1.6; }
+
+    /* ── Checklist ── */
+    .checklist-section {
+      background: var(--dark);
+      padding: 80px 24px;
+    }
+    .checklist-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .checklist-section .section-label { color: var(--green); }
+    .checklist-section .section-label::before { background: var(--green); }
+    .checklist-section h2 { color: white; }
+    .checklist-section p { color: rgba(255,255,255,0.6); }
+    .checklist-group { margin-bottom: 32px; }
+    .checklist-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .checklist-items { display: flex; flex-direction: column; gap: 2px; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .check-item:hover { background: rgba(255,255,255,0.04); }
+    .check-item.checked { background: rgba(166,239,158,0.06); }
+    .checkbox {
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      border: 2px solid rgba(255,255,255,0.2);
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .check-item.checked .checkbox {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .checkbox-tick {
+      width: 10px; height: 10px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolyline points='1.5,5 4,7.5 8.5,2.5' stroke='%230D0D18' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .check-item.checked .checkbox-tick { opacity: 1; }
+    .check-label {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+      transition: color 0.15s;
+    }
+    .check-item.checked .check-label { color: rgba(255,255,255,0.85); }
+    .score-widget {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    .score-count {
+      font-family: var(--serif);
+      font-size: 44px;
+      color: var(--green);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .score-bar-track {
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      background: var(--green);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .score-message { font-size: 14px; color: rgba(255,255,255,0.45); }
+
+    /* ── Time Charts ── */
+    .time-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) { .time-split { grid-template-columns: 1fr; } }
+    .time-chart {
+      background: white;
+      border: 1px solid var(--mid-grey);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+    .section:nth-child(even) .time-chart { background: var(--warm-grey); }
+    .time-chart h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 18px;
+      letter-spacing: 0.2px;
+    }
+    .time-bar-row { margin-bottom: 14px; }
+    .time-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-mid);
+      margin-bottom: 5px;
+    }
+    .time-bar-pct { font-weight: 600; color: var(--text); }
+    .time-bar-track {
+      height: 8px;
+      background: var(--warm-grey);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .time-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.9s cubic-bezier(0.22,1,0.36,1);
+    }
+    .fill-red { background: #F4A4A4; }
+    .fill-amber { background: #F7D48A; }
+    .fill-green { background: var(--green); }
+    .fill-blue { background: var(--light-blue); }
+    .fill-royal { background: var(--royal); opacity: 0.5; }
+
+    /* ── Video Embed ── */
+    .video-section {
+      background: var(--dark);
+      padding: 80px 24px;
+    }
+    .video-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .video-section .section-label { color: var(--green); }
+    .video-section .section-label::before { background: var(--green); }
+    .video-section h2 { color: white; }
+    .video-section p { color: rgba(255,255,255,0.6); }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin: 32px 0;
+      background: #000;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+      border-radius: var(--radius);
+    }
+    .video-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .video-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .video-link:hover { background: rgba(255,255,255,0.08); color: white; }
+    .video-link-arrow { font-size: 16px; }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      background: var(--green);
+      padding: 96px 24px;
+      text-align: center;
+    }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
+    .cta-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      opacity: 0.6;
+      margin-bottom: 20px;
+    }
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 68px);
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .cta-section p {
+      font-size: 17px;
+      color: rgba(13,13,24,0.65);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .cta-small {
+      font-size: 14px !important;
+      color: rgba(13,13,24,0.45) !important;
+      margin-bottom: 40px !important;
+    }
+    .cta-btn {
+      background: var(--dark);
+      color: white;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(13,13,24,0.2); }
+    .cta-tagline {
+      margin-top: 24px;
+      font-size: 13px;
+      color: rgba(13,13,24,0.4);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--dark);
+      padding: 40px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: rgba(255,255,255,0.75); }
+    .footer-copy {
+      color: rgba(255,255,255,0.25);
+      font-size: 13px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--mid-grey);
+      margin: 40px 0;
+    }
+    .checklist-section .divider { background: rgba(255,255,255,0.08); }
+
+    /* ── Animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+    .stagger-1 { transition-delay: 0.08s; }
+    .stagger-2 { transition-delay: 0.16s; }
+    .stagger-3 { transition-delay: 0.24s; }
+    .stagger-4 { transition-delay: 0.32s; }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .section { padding: 56px 18px; }
+      .checklist-section { padding: 56px 18px; }
+      .video-section { padding: 56px 18px; }
+      .cta-section { padding: 72px 18px; }
+      .chapter-link { padding: 14px 12px; font-size: 11px; }
+      .case-study-body { padding: 20px; }
+      .case-study-header { padding: 20px 20px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Progress Bar ── -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- ── Top Bar ── -->
+<div class="top-bar">
+  <a href="https://www.flowcase.com" class="top-bar-logo">
+    <div class="logo-mark">F=</div>
+    <span class="logo-wordmark">Flowcase</span>
+  </a>
+  <a href="https://www.flowcase.com/book-demo" class="top-bar-cta">Book a demo →</a>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow fade-in"><span></span> Flowcase Guide — 2025</div>
+    <h1 class="fade-in stagger-1">Before You<br><em>Automate</em></h1>
+    <p class="hero-sub fade-in stagger-2">
+      The expertise data problem top AEC firms are solving.<br>
+      <strong>Why AI proposal tools still fall flat — and what winning firms do first.</strong>
+    </p>
+    <div class="hero-meta fade-in stagger-3">
+      <a href="#ai-paradox" class="hero-btn">Start reading ↓</a>
+      <span class="hero-read">📖 12 min read</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Chapter Nav ── -->
+<nav class="chapter-nav" id="chapter-nav">
+  <div class="chapter-nav-inner">
+    <a href="#ai-paradox" class="chapter-link active" data-section="ai-paradox"><span class="chapter-num">1</span> AI Paradox</a>
+    <a href="#real-problem" class="chapter-link" data-section="real-problem"><span class="chapter-num">2</span> The Problem</a>
+    <a href="#why-ai-fails" class="chapter-link" data-section="why-ai-fails"><span class="chapter-num">3</span> Why AI Fails</a>
+    <a href="#two-layer" class="chapter-link" data-section="two-layer"><span class="chapter-num">4</span> The Model</a>
+    <a href="#case-study" class="chapter-link" data-section="case-study"><span class="chapter-num">5</span> Case Study</a>
+    <a href="#checklist" class="chapter-link" data-section="checklist"><span class="chapter-num">6</span> Checklist</a>
+    <a href="#shift" class="chapter-link" data-section="shift"><span class="chapter-num">7</span> The Shift</a>
+  </div>
+</nav>
+
+<!-- ── CHAPTER 1 ── -->
+<section class="section" id="ai-paradox">
+  <div class="section-inner">
+    <div class="section-label fade-in">Chapter 1</div>
+    <h2 class="fade-in stagger-1">The AI paradox in<br>AEC proposals</h2>
+    <p class="fade-in stagger-2">Proposal teams at engineering and consulting firms are generating more content faster than ever. AI writing tools can spin up a first draft in minutes. Resumes get auto-formatted. Project descriptions are pulled together without the usual two-day scramble.</p>
+    <p class="fade-in stagger-2">So why hasn't the win rate moved?</p>
+
+    <div class="stat-callout fade-in">
+      <p>"AI hasn't improved your win rate. <span>It's just helped you lose faster.</span>"</p>
+    </div>
+
+    <p class="fade-in">Clients evaluating proposals aren't impressed by volume. They're looking for something specific and difficult to fake: evidence that your firm has genuinely done this kind of work before, with people who are credible and available, on projects that are relevant and verifiable.</p>
+    <p class="fade-in">The problem isn't the writing. It's never been the writing. The problem is that most firms can't quickly surface accurate, structured, trustworthy expertise data — and no AI tool has fixed that. It can only amplify whatever exists in the data layer beneath it.</p>
+    <p class="fade-in">If that data is messy, outdated, or fragmented across a dozen systems, AI gives you polished content built on a shaky foundation. And experienced evaluators can tell.</p>
+
+    <div class="pull-quote fade-in">
+      <p>"The firms winning the most competitive bids aren't the ones with the slickest AI output. They're the ones who can prove — specifically, credibly, and instantly — that their people have done this before."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 2 ── -->
+<section class="section" id="real-problem">
+  <div class="section-inner">
+    <div class="section-label fade-in">Chapter 2</div>
+    <h2 class="fade-in stagger-1">The real problem is<br><em>expertise data</em></h2>
+    <p class="fade-in stagger-2">Ask any proposal manager in a large AEC or consulting firm where their resumes live. The answer is almost always the same: everywhere and nowhere at once.</p>
+
+    <ul class="sources-list fade-in">
+      <li><div class="src-dot"></div>SharePoint folders with seven versions of the same CV</li>
+      <li><div class="src-dot"></div>Word documents emailed back and forth before every bid</li>
+      <li><div class="src-dot"></div>HR systems that track employment history, not proposal-ready experience</li>
+      <li><div class="src-dot"></div>Old proposal files with buried, out-of-date project descriptions</li>
+      <li><div class="src-dot"></div>People's personal hard drives and email attachments</li>
+      <li><div class="src-dot"></div>Tribal knowledge — the senior BD leader who just knows who worked on what</li>
+    </ul>
+
+    <p class="fade-in">This fragmentation is so common it's become invisible. Teams work around it every time. They spend days before a bid deadline hunting for resumes, chasing consultants for updates, reformatting everything to template, and praying nothing's expired.</p>
+    <p class="fade-in">And when a firm grows through acquisition — which most large AEC firms do — the problem compounds overnight. Suddenly you've inherited five different systems, three CV formats, and expertise scattered across offices that don't yet speak to each other.</p>
+
+    <div class="stat-callout fade-in">
+      <p>The question isn't <span>whether your AI tool is good enough.</span><br>It's whether your data is good enough to feed it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 3 ── -->
+<section class="section" id="why-ai-fails">
+  <div class="section-inner">
+    <div class="section-label fade-in">Chapter 3</div>
+    <h2 class="fade-in stagger-1">Three reasons AI<br>proposal tools <em>underdeliver</em></h2>
+    <p class="fade-in stagger-2">AI proposal tools aren't failing because the technology is immature. They're failing because the data they run on isn't ready. Here's how it plays out in practice.</p>
+
+    <div class="fail-cards fade-in">
+      <div class="fail-card">
+        <div class="fail-num">1</div>
+        <div>
+          <h4>Unstructured data generates irrelevant recommendations</h4>
+          <p>When your expertise data lives in unformatted Word docs and free-text fields, AI can't distinguish between a $5M infrastructure project and a $500K feasibility study. It matches keywords, not actual relevance. The output sounds plausible but misses the point of what the client is actually looking for.</p>
+        </div>
+      </div>
+      <div class="fail-card">
+        <div class="fail-num">2</div>
+        <div>
+          <h4>Outdated data creates compliance and credibility risk</h4>
+          <p>A resume in SharePoint from 2021 may show a PE license that expired in 2023. A project description may list a team lead who left the firm. An AI tool will confidently include both in your proposal. Evaluators may catch it. And if they do, the bid is over — not because of the AI, but because the underlying data was never maintained.</p>
+        </div>
+      </div>
+      <div class="fail-card">
+        <div class="fail-num">3</div>
+        <div>
+          <h4>No governance means no trust in the output</h4>
+          <p>Even if the AI generates something reasonable, your proposal team has no way to verify it quickly. They spend the same hours they saved on generation double-checking facts, correcting names, and cross-referencing against other systems. The efficiency gain disappears. And the confidence in the tool erodes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote fade-in">
+      <p>You don't need a better AI writing tool. You need better inputs for the one you already have.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 4 ── -->
+<section class="section" id="two-layer">
+  <div class="section-inner">
+    <div class="section-label fade-in">Chapter 4</div>
+    <h2 class="fade-in stagger-1">The two-layer model<br>for <em>AI-ready</em> proposals</h2>
+    <p class="fade-in stagger-2">The firms getting real value from AI in their proposal process aren't starting with AI. They're starting with what AI needs to work: clean, structured, governed expertise data.</p>
+    <p class="fade-in stagger-2">Think of it as two layers. <strong>You can't build the second without the first.</strong></p>
+
+    <div class="layers fade-in">
+      <div class="layer layer-2">
+        <div class="layer-badge">Layer 2 — AI Application</div>
+        <h3>Where the payoff compounds</h3>
+        <div class="layer-items">
+          <div class="layer-item">Requirement parsing from RFP documents</div>
+          <div class="layer-item">Automated role-to-expertise matching</div>
+          <div class="layer-item">Compliance and coverage tracking</div>
+          <div class="layer-item">Intelligent tailoring suggestions</div>
+          <div class="layer-item">Team assembly recommendations</div>
+          <div class="layer-item">Win theme alignment scoring</div>
+        </div>
+      </div>
+      <div class="layer-connector">↑ Built on top of ↑</div>
+      <div class="layer layer-1">
+        <div class="layer-badge">Layer 1 — Data Foundation ← Start here</div>
+        <h3>The strategic investment</h3>
+        <div class="layer-items">
+          <div class="layer-item">Structured, searchable CVs and resumes</div>
+          <div class="layer-item">Clean project metadata with client, scope, and value</div>
+          <div class="layer-item">Standardized skills and certification taxonomies</div>
+          <div class="layer-item">Real-time updates, not annual refreshes</div>
+          <div class="layer-item">Integration with HR, CRM, and PSA systems</div>
+          <div class="layer-item">Governed master data with version control</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fade-in">Most firms are trying to skip straight to Layer 2. They're plugging AI writing tools into the same messy SharePoint folders and hoping for magic. It doesn't work.</p>
+
+    <p class="fade-in">Flowcase is built specifically for <strong>Layer 1</strong> — the data foundation that makes everything else possible. <a href="https://www.flowcase.com/platform/ai-features" style="color:var(--royal);font-weight:600;text-decoration:none;">See how Flowcase's AI features work →</a></p>
+
+    <div class="stat-callout fade-in">
+      <p>You don't need a better AI writing tool.<br><span>You need better inputs for the one you already have.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 5: CASE STUDY ── -->
+<section class="section" id="case-study">
+  <div class="section-inner">
+    <div class="section-label fade-in">Chapter 5 — Case Study</div>
+    <h2 class="fade-in stagger-1">From resume chaos<br>to <em>competitive edge</em></h2>
+    <p class="fade-in stagger-2">This isn't theoretical. Firms across the AEC industry are already investing in their expertise data infrastructure — and the results are tangible.</p>
+
+    <div class="case-study-card fade-in stagger-3">
+      <div class="case-study-header">
+        <img
+          src="https://cdn.prod.website-files.com/66ffc689f345598994345576/6712e08dcd29e3706c694f71_WSB-logo-white.svg"
+          alt="WSB Engineers"
+          class="wsb-logo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        >
+        <div style="display:none; color:white; font-size:20px; font-weight:700; letter-spacing:-0.5px;">WSB Engineers</div>
+        <span class="case-tag">1,600+ employees</span>
+      </div>
+      <div class="case-study-body">
+        <p>When WSB expanded from 450 to over 1,600 employees through a series of acquisitions, their people and project data was scattered across five different organizations' worth of systems, formats, and filing conventions.</p>
+        <p>Before making any move toward AI or automation, they focused on the foundation: centralizing over <strong>900 professional profiles</strong> into a single, structured, searchable system. Every resume followed the same format. Every project had clean metadata. Every certification was validated and current.</p>
+        <div class="case-result">
+          <div class="case-result-num">20%+</div>
+          <div class="case-result-text">Reduction in proposal preparation time<br><span style="opacity:0.5;font-size:12px;">after centralizing expertise data</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimony fade-in">
+      <blockquote>"Before, pulling resumes together was a nightmare. Different versions in Word, SharePoint, or emails. Now we have a single source of truth. It used to take days, but now I can tailor 10 resumes in under an hour."</blockquote>
+      <div class="testimony-attr">
+        <div class="testimony-avatar">PR</div>
+        <div>
+          <div class="testimony-name">Paul Reinhart</div>
+          <div class="testimony-title">Proposal Manager, WSB Engineers</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="fade-in">The principles that set them apart</h3>
+    <p class="fade-in">WSB's story isn't unique — it's a pattern. The firms pulling ahead share a common playbook:</p>
+
+    <div class="principles fade-in">
+      <div class="principle">
+        <div class="principle-dot"></div>
+        <p><strong>Treat expertise as infrastructure,</strong> not a document management problem.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-dot"></div>
+        <p><strong>Invest in a system of record</strong> for people and project data.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-dot"></div>
+        <p><strong>Standardize before you automate.</strong> Clean data first, AI second.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-dot"></div>
+        <p><strong>Make proposal data API-ready</strong> so future tools can access it.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-dot"></div>
+        <p><strong>Design for integration, not isolation.</strong> Work with HR, CRM, and PSA — don't replace them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 6: CHECKLIST ── -->
+<section class="checklist-section" id="checklist">
+  <div class="checklist-inner">
+    <div class="section-label fade-in">Chapter 6 — Interactive</div>
+    <h2 class="fade-in stagger-1">The AI readiness<br>checklist</h2>
+    <p class="fade-in stagger-2">Before you invest in any AI proposal tool, run through this checklist. If you can't check most of these boxes, you're not ready for Layer 2 — and any AI investment will underperform.</p>
+
+    <div class="score-widget fade-in" id="score-widget">
+      <div class="score-count" id="score-count">0 / 13</div>
+      <div class="score-bar-track">
+        <div class="score-bar-fill" id="score-bar"></div>
+      </div>
+      <p class="score-message" id="score-label">Check the boxes that apply to your firm.</p>
+    </div>
+
+    <div class="checklist-group fade-in">
+      <div class="checklist-header">Your People Data</div>
+      <div class="checklist-items">
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Can you search for any employee by skill, certification, project type, or client — firm-wide?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Are all CVs and resumes stored in a structured, searchable format (not Word docs in folders)?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Do you have a standardized skills dictionary consistent across offices and acquired entities?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Are certifications centrally validated with expiration tracking?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Can employees update their own profiles without breaking the master data?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group fade-in">
+      <div class="checklist-header">Your Project Data</div>
+      <div class="checklist-items">
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Can you segment past projects by client, service line, region, and contract value?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Are project descriptions standardized and searchable — not buried in old proposals?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Is project data connected to the people who actually delivered it?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Can you produce a compliance matrix showing team coverage against RFP requirements in minutes, not days?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group fade-in">
+      <div class="checklist-header">Your Systems</div>
+      <div class="checklist-items">
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Can AI tools access your expertise data through an API — without someone exporting a spreadsheet first?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Does your expertise data sync with HR, CRM, or PSA systems?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">Is there a single governed system of record, or are there competing versions of truth across the firm?</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><div class="checkbox-tick"></div></div>
+          <div class="check-label">If you acquired a company tomorrow, could you integrate their people data within weeks — not quarters?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-callout fade-in" style="margin-top:40px;">
+      <p>If you checked fewer than half,<br>you have an expertise data problem.<br><span>No AI tool will fix it for you.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 7 ── -->
+<section class="section" id="shift">
+  <div class="section-inner">
+    <div class="section-label fade-in">Chapter 7</div>
+    <h2 class="fade-in stagger-1">From chasing resumes<br>to <em>proving expertise</em></h2>
+    <p class="fade-in stagger-2">Here's the uncomfortable truth about most AEC proposal teams: they spend the majority of their time on operational work — finding people, formatting CVs, chasing updates, verifying credentials — instead of the strategic work that actually wins bids.</p>
+    <p class="fade-in stagger-2">Shaping the narrative. Aligning the team to evaluation criteria. Telling the story of why <em>this firm, with these people, on this project</em>, is the only credible choice.</p>
+
+    <div id="time-charts" class="time-split fade-in">
+      <div class="time-chart">
+        <h4>Where proposal teams spend their time</h4>
+        <div class="time-bar-row">
+          <div class="time-bar-label"><span>Data management</span><span class="time-bar-pct">60%</span></div>
+          <div class="time-bar-track"><div class="time-bar-fill fill-red" data-pct="60"></div></div>
+        </div>
+        <div class="time-bar-row">
+          <div class="time-bar-label"><span>Coordination &amp; approvals</span><span class="time-bar-pct">25%</span></div>
+          <div class="time-bar-track"><div class="time-bar-fill fill-amber" data-pct="25"></div></div>
+        </div>
+        <div class="time-bar-row">
+          <div class="time-bar-label"><span>Strategy &amp; storytelling</span><span class="time-bar-pct">15%</span></div>
+          <div class="time-bar-track"><div class="time-bar-fill fill-green" data-pct="15"></div></div>
+        </div>
+      </div>
+      <div class="time-chart">
+        <h4>Where they should spend their time</h4>
+        <div class="time-bar-row">
+          <div class="time-bar-label"><span>Strategy &amp; storytelling</span><span class="time-bar-pct">60%</span></div>
+          <div class="time-bar-track"><div class="time-bar-fill fill-green" data-pct="60"></div></div>
+        </div>
+        <div class="time-bar-row">
+          <div class="time-bar-label"><span>Coordination</span><span class="time-bar-pct">20%</span></div>
+          <div class="time-bar-track"><div class="time-bar-fill fill-blue" data-pct="20"></div></div>
+        </div>
+        <div class="time-bar-row">
+          <div class="time-bar-label"><span>Data management</span><span class="time-bar-pct">20%</span></div>
+          <div class="time-bar-track"><div class="time-bar-fill fill-royal" data-pct="20"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fade-in">The firms that invest in their expertise data infrastructure aren't just getting faster proposals. They're freeing their best people to do their best work. And that's where win rates actually change.</p>
+
+    <div class="divider"></div>
+
+    <h3 class="fade-in">Reputation-based proposals</h3>
+    <p class="fade-in">The best proposals don't just respond to requirements. They prove — with structured, credible, specific evidence — that your firm has the people and the track record to deliver.</p>
+    <p class="fade-in">That requires more than good writing. It requires a foundation of clean, trustworthy, accessible expertise data. Data that's searchable when a shortlist deadline hits. Data that's accurate when a client checks credentials. Data that's structured so it can feed into any output format.</p>
+    <p class="fade-in"><strong>Your greatest asset isn't what you do. It's who does it.</strong> And the firms winning the most work right now are the ones who can prove it — instantly, reliably, and at scale.</p>
+
+    <div class="stat-callout fade-in">
+      <p>Enterprise teams don't lose bids because they lack expertise.<br>They lose because that expertise<br><span>isn't visible, trusted, or usable when decisions are made.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── VIDEO SECTION ── -->
+<section class="video-section" id="see-flowcase">
+  <div class="video-inner">
+    <div class="section-label fade-in">See Flowcase in action</div>
+    <h2 class="fade-in stagger-1">The system of record<br>for your <em>expertise</em></h2>
+    <p class="fade-in stagger-2">Flowcase helps enterprise AEC and professional services firms centralize, structure, and activate their people and project data. See how it works in this 3-minute overview.</p>
+    <div class="video-container fade-in stagger-3">
+      <iframe
+        src="https://www.youtube.com/embed/vC2gZVZfeOA"
+        title="Flowcase Explainer"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="video-links fade-in stagger-4">
+      <a href="https://www.flowcase.com/platform/ai-features" class="video-link">AI features <span class="video-link-arrow">→</span></a>
+      <a href="https://www.flowcase.com/features/data-privacy" class="video-link">Data privacy <span class="video-link-arrow">→</span></a>
+      <a href="https://www.flowcase.com" class="video-link">Explore the platform <span class="video-link-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner">
+    <div class="cta-eyebrow fade-in">Ready to build your foundation?</div>
+    <h2 class="fade-in stagger-1">That's what<br>Flowcase is for.</h2>
+    <p class="fade-in stagger-2">Flowcase centralizes your CVs, project experience, and credentials into one structured, searchable system — so your team can find the right expertise, tailor it instantly, and prove your firm can deliver.</p>
+    <p class="cta-small fade-in stagger-3">It's not an AI writing tool. It's the infrastructure that makes AI writing tools actually work.</p>
+    <a href="https://www.flowcase.com/book-demo" class="cta-btn fade-in stagger-4">Book a demo →</a>
+    <p class="cta-tagline fade-in">The platform for Reputation-Based Proposals</p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <a href="https://www.flowcase.com" class="top-bar-logo" style="text-decoration:none;">
+    <div class="logo-mark">F=</div>
+    <span class="logo-wordmark" style="font-size:14px;">Flowcase</span>
+  </a>
+  <div class="footer-links">
+    <a href="https://www.flowcase.com/platform/ai-features">AI features</a>
+    <a href="https://www.flowcase.com/features/data-privacy">Data privacy</a>
+    <a href="https://www.flowcase.com/book-demo">Book a demo</a>
+    <a href="https://www.flowcase.com">flowcase.com</a>
+  </div>
+  <span class="footer-copy">© 2025 Flowcase</span>
+</footer>
+
+<script>
+  // Progress bar
+  const pb = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    pb.style.width = pct + '%';
+  });
+
+  // Fade-in observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Chapter nav active state
+  const sections = ['ai-paradox','real-problem','why-ai-fails','two-layer','case-study','checklist','shift'];
+  const navLinks = document.querySelectorAll('.chapter-link');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px' });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) sectionObserver.observe(el); });
+
+  // Checklist
+  const TOTAL = 13;
+  function toggleCheck(item) { item.classList.toggle('checked'); updateScore(); }
+  function updateScore() {
+    const checked = document.querySelectorAll('.check-item.checked').length;
+    const pct = Math.round(checked / TOTAL * 100);
+    document.getElementById('score-count').textContent = checked + ' / ' + TOTAL;
+    document.getElementById('score-bar').style.width = pct + '%';
+    const lbl = document.getElementById('score-label');
+    if (!checked) { lbl.textContent = 'Check the boxes that apply to your firm.'; lbl.style.color = ''; }
+    else if (pct < 40) { lbl.textContent = 'Your expertise data needs significant work before AI can help.'; lbl.style.color = '#F4A4A4'; }
+    else if (pct < 70) { lbl.textContent = "You're on the right track, but gaps remain. Address Layer 1 first."; lbl.style.color = '#F7D48A'; }
+    else if (pct < 100) { lbl.textContent = 'Strong foundation. Close the remaining gaps and you\'re AI-ready.'; lbl.style.color = '#A6EF9E'; }
+    else { lbl.textContent = 'Solid. You\'re ready for AI to compound the value.'; lbl.style.color = '#A6EF9E'; }
+  }
+
+  // Bar chart animation on scroll
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.time-bar-fill').forEach(b => {
+          setTimeout(() => { b.style.width = b.dataset.pct + '%'; }, 200);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  const tc = document.getElementById('time-charts');
+  if (tc) barObserver.observe(tc);
+</script>
+</body>
+</html>
